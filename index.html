@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment</title>
+    <script src="ex1.js"></script>
+    <script src="ex2.js"></script>
+</head>
+
+<body>
+
+<h1>Exercise 1</h1>
+
+<p>
+    <input type="text" id="weight" placeholder="Enter weight (kg)">
+    <button onclick="check()">Check Baggage</button>
+</p>
+
+<p>
+    <input type="text" id="removed" style="display:none;">
+    <button id="remB" onclick="remove()" style="display:none;">
+        Remove this much baggage (kg)
+    </button>
+</p>
+
+<hr>
+
+<h1>Exercise 2</h1>
+
+<p>
+    <button onclick="euler1()">Solve Euler (3 & 5 below 1000)</button>
+</p>
+
+<p>
+    <label>A</label>
+    <input type="text" id="a">
+
+    <label>B</label>
+    <input type="text" id="b">
+
+    <label>N</label>
+    <input type="text" id="n">
+</p>
+
+<p>
+    <button onclick="eulerCustom()">Custom Sum</button>
+</p>
+
+<hr>
+
+<h1>Exercise 3</h1>
+
+<p>
+    <label>A</label>
+    <input type="text" id="a1"><br>
+
+    <label>B</label>
+    <input type="text" id="b1"><br>
+
+    <label>List (comma separated)</label>
+    <input type="text" id="l">
+</p>
+
+<p>
+    <button onclick="eulerlist()">Sum from List</button>
+</p>
+
+<hr>
+
+<p>
+    <b>Part 2 & 3</b><br><br>
+
+    <label>A List</label>
+    <input type="text" id="aList" placeholder="e.g. 3,5"><br>
+
+    <label>L List</label>
+    <input type="text" id="mList" placeholder="e.g. 1,2,3,4,5,6">
+</p>
+
+<p>
+    <button onclick="euler2Lists()">A length = 2</button>
+    <button onclick="euler2Lists1()">A any length</button>
+</p>
+
+</body>
+</html>
