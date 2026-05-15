@@ -1,85 +1,231 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment</title>
+
     <script src="ex1.js"></script>
     <script src="ex2.js"></script>
+     <script src="ex7.js"></script>
 </head>
 
 <body>
 
-<h1>Exercise 1</h1>
+    <h1>Exercise 1</h1>
 
-<p>
-    <input type="text" id="weight" placeholder="Enter weight (kg)">
-    <button onclick="check()">Check Baggage</button>
-</p>
+    <p>
+        <input type="text" id="weight" placeholder="Enter weight (kg)">
+        <button onclick="check()">Check Baggage</button>
+    </p>
 
-<p>
-    <input type="text" id="removed" style="display:none;">
-    <button id="remB" onclick="remove()" style="display:none;">
-        Remove this much baggage (kg)
-    </button>
-</p>
+    <p>
+        <input type="text" id="removed" style="display:none;">
+        <button id="remB" onclick="remove()" style="display:none;">
+            Remove this much baggage (kg)
+        </button>
+    </p>
 
-<hr>
+    <hr>
 
-<h1>Exercise 2</h1>
+    <h1>Exercise 2</h1>
 
-<p>
-    <button onclick="euler1()">Solve Euler (3 & 5 below 1000)</button>
-</p>
+    <p>
+        <button onclick="euler1()">Solve Euler (3 & 5 below 1000)</button>
+    </p>
 
-<p>
-    <label>A</label>
-    <input type="text" id="a">
+    <p>
+        <label>A</label>
+        <input type="text" id="a">
 
-    <label>B</label>
-    <input type="text" id="b">
+        <label>B</label>
+        <input type="text" id="b">
 
-    <label>N</label>
-    <input type="text" id="n">
-</p>
+        <label>N</label>
+        <input type="text" id="n">
+    </p>
 
-<p>
-    <button onclick="eulerCustom()">Custom Sum</button>
-</p>
+    <p>
+        <button onclick="eulerCustom()">Custom Sum</button>
+    </p>
 
-<hr>
+    <hr>
 
-<h1>Exercise 3</h1>
+    <h1>Exercise 3</h1>
 
-<p>
-    <label>A</label>
-    <input type="text" id="a1"><br>
+    <p>
+        <label>A</label>
+        <input type="text" id="a1"><br><br>
 
-    <label>B</label>
-    <input type="text" id="b1"><br>
+        <label>B</label>
+        <input type="text" id="b1"><br><br>
 
-    <label>List (comma separated)</label>
-    <input type="text" id="l">
-</p>
+        <label>List (comma separated)</label>
+        <input type="text" id="l">
+    </p>
 
-<p>
-    <button onclick="eulerlist()">Sum from List</button>
-</p>
+    <p>
+        <button onclick="eulerlist()">Sum from List</button>
+    </p>
 
-<hr>
+    <hr>
 
-<p>
-    <b>Part 2 & 3</b><br><br>
+    <p>
+        <b>Part 2 & 3</b><br><br>
 
-    <label>A List</label>
-    <input type="text" id="aList" placeholder="e.g. 3,5"><br>
+        <label>A List</label>
+        <input type="text" id="aList" placeholder="e.g. 3,5"><br><br>
 
-    <label>L List</label>
-    <input type="text" id="mList" placeholder="e.g. 1,2,3,4,5,6">
-</p>
+        <label>L List</label>
+        <input type="text" id="mList" placeholder="e.g. 1,2,3,4,5,6">
+    </p>
 
-<p>
-    <button onclick="euler2Lists()">A length = 2</button>
-    <button onclick="euler2Lists1()">A any length</button>
-</p>
+    <p>
+        <button onclick="euler2Lists()">A length = 2</button>
+        <button onclick="euler2Lists1()">A any length</button>
+    </p>
+
+    <hr>
+
+    <h1>User Card Component</h1>
+
+    <!-- USER CARDS -->
+
+    <user-card 
+        name="Gaurav Saini"
+        avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB65ji3btAvoNXOG9IhJW44O3HndVPGOwXfX94H611S16YumoWnGaEbY_DBsV_9KJpgVAzpqpon3Qm-8x7HBtKLc9PcyYzFUTBJVbVLg&s=10">
+
+        <div slot="email">officialgauravsaini026@gmail.com</div>
+        <div slot="phone">098-876-234</div>
+
+    </user-card>
+
+    <br>
+
+    <user-card 
+        name="Sidhu Paaji"
+        avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdMcCVLMm-5xDfszJvvjxZzAMeC15QX7vqReblPASZx-HwTtKHfBfoCSs_pGDVY7PUZcLGSA1uw6z2i_B9Pgfd0sqcxQUOwYCRsRir5CA&s=10">
+
+        <div slot="email">sidhumoosewala123@gmail.com</div>
+        <div slot="phone">098-845-534</div>
+
+    </user-card>
+
+    <!-- USER CARD SCRIPT -->
+
+    <script>
+
+        const template = document.createElement('template');
+
+        template.innerHTML = `
+        <style>
+
+            .user-card {
+                font-family: Arial, sans-serif;
+                background: #f4f4f4;
+                width: 500px;
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                gap: 10px;
+                margin-bottom: 15px;
+                border-bottom: darkorchid 5px solid;
+                padding: 10px;
+            }
+
+            .user-card img {
+                width: 100%;
+            }
+
+            .user-card button {
+                cursor: pointer;
+                background: darkorchid;
+                color: white;
+                border: 0;
+                border-radius: 5px;
+                padding: 5px 10px;
+            }
+
+        </style>
+
+        <div class="user-card">
+
+            <img />
+
+            <div>
+
+                <h3></h3>
+
+                <div class="info">
+                    <p><slot name="email"></slot></p>
+                    <p><slot name="phone"></slot></p>
+                </div>
+
+                <button id="toggle-info">
+                    Hide Info
+                </button>
+
+            </div>
+
+        </div>
+        `;
+
+        class UserCard extends HTMLElement {
+
+            constructor() {
+
+                super();
+
+                this.showInfo = true;
+
+                this.attachShadow({ mode: 'open' });
+
+                this.shadowRoot.appendChild(
+                    template.content.cloneNode(true)
+                );
+
+                this.shadowRoot.querySelector('h3').innerText =
+                    this.getAttribute('name');
+
+                this.shadowRoot.querySelector('img').src =
+                    this.getAttribute('avatar');
+            }
+
+            toggleInfo() {
+
+                this.showInfo = !this.showInfo;
+
+                const info =
+                    this.shadowRoot.querySelector('.info');
+
+                const toggleBtn =
+                    this.shadowRoot.querySelector('#toggle-info');
+
+                if (this.showInfo) {
+
+                    info.style.display = 'block';
+                    toggleBtn.innerText = 'Hide Info';
+
+                } else {
+
+                    info.style.display = 'none';
+                    toggleBtn.innerText = 'Show Info';
+                }
+            }
+
+            connectedCallback() {
+
+                this.shadowRoot
+                    .querySelector('#toggle-info')
+                    .addEventListener(
+                        'click',
+                        () => this.toggleInfo()
+                    );
+            }
+        }
+
+        window.customElements.define('user-card', UserCard);
+
+    </script>
 
 </body>
 </html>
