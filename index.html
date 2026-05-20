@@ -1,231 +1,299 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assignment</title>
 
     <script src="ex1.js"></script>
     <script src="ex2.js"></script>
-     <script src="ex7.js"></script>
-</head>
+    <script src="ex3.js"></script>
+    <script src="ex4.js"></script>
+    <script src="ex5.js"></script>
+    <script src="ex6.js"></script>
+    <script src="ex7.js"></script>
 
-<body>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 20px;
+      }
 
+      input {
+        margin: 5px;
+        padding: 5px;
+      }
+
+      button {
+        margin: 5px;
+        padding: 6px 12px;
+        cursor: pointer;
+      }
+
+      .box {
+        margin-bottom: 25px;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+
+      #output5,
+      #output6 {
+        margin-top: 10px;
+        font-weight: bold;
+        color: darkgreen;
+      }
+    </style>
+  </head>
+
+  <body>
     <h1>Exercise 1</h1>
+    <div class="box">
+      <input type="text" id="weight" placeholder="Enter weight" />
+      <button onclick="check()">Check Baggage</button>
 
-    <p>
-        <input type="text" id="weight" placeholder="Enter weight (kg)">
-        <button onclick="check()">Check Baggage</button>
-    </p>
+      <br /><br />
 
-    <p>
-        <input type="text" id="removed" style="display:none;">
-        <button id="remB" onclick="remove()" style="display:none;">
-            Remove this much baggage (kg)
-        </button>
-    </p>
+      <input type="text" id="removed" style="display: none" />
+      <button id="remB" onclick="remove()" style="display: none">
+        Remove baggage
+      </button>
+    </div>
 
-    <hr>
+    <hr />
 
     <h1>Exercise 2</h1>
+    <div class="box">
+      <button onclick="euler1()">Euler (3 & 5)</button>
 
-    <p>
-        <button onclick="euler1()">Solve Euler (3 & 5 below 1000)</button>
-    </p>
+      <br /><br />
 
-    <p>
-        <label>A</label>
-        <input type="text" id="a">
+      <input id="a" placeholder="A" />
+      <input id="b" placeholder="B" />
+      <input id="n" placeholder="N" />
 
-        <label>B</label>
-        <input type="text" id="b">
+      <button onclick="eulerCustom()">Custom Sum</button>
+    </div>
 
-        <label>N</label>
-        <input type="text" id="n">
-    </p>
-
-    <p>
-        <button onclick="eulerCustom()">Custom Sum</button>
-    </p>
-
-    <hr>
+    <hr />
 
     <h1>Exercise 3</h1>
+    <div class="box">
+      <input id="a1" placeholder="A" />
+      <input id="b1" placeholder="B" />
+      <input id="l" placeholder="List (comma separated)" />
 
-    <p>
-        <label>A</label>
-        <input type="text" id="a1"><br><br>
+      <button onclick="eulerlist()">List Sum</button>
+    </div>
 
-        <label>B</label>
-        <input type="text" id="b1"><br><br>
+    <hr />
 
-        <label>List (comma separated)</label>
-        <input type="text" id="l">
-    </p>
+    <hr />
 
-    <p>
-        <button onclick="eulerlist()">Sum from List</button>
-    </p>
+    <h1>Exercise 4</h1>
 
-    <hr>
+    <div class="box">
+      <p>
+        Example:
+        <b>3 5 : 1 2 3 4 5 6 7 8 9</b>
+      </p>
 
-    <p>
-        <b>Part 2 & 3</b><br><br>
+      <input
+        type="text"
+        id="inputText"
+        placeholder="Enter factors : multiples"
+      />
 
-        <label>A List</label>
-        <input type="text" id="aList" placeholder="e.g. 3,5"><br><br>
+      <button onclick="runCalculation()">Calculate</button>
 
-        <label>L List</label>
-        <input type="text" id="mList" placeholder="e.g. 1,2,3,4,5,6">
-    </p>
+      <div id="output4"></div>
+    </div>
+    <hr />
 
-    <p>
-        <button onclick="euler2Lists()">A length = 2</button>
-        <button onclick="euler2Lists1()">A any length</button>
-    </p>
+    <h1>Exercise 5 (CORRUPT VERSION)</h1>
+    <hr />
 
-    <hr>
+    <h1>Exercise 5</h1>
+
+    <div class="box">
+      <p>Examples:</p>
+
+      <p>
+        <b>3 5 hello : 1 2 3 4 5 6 7 8 9</b>
+      </p>
+
+      <p>
+        <b>2 3 5 67</b>
+      </p>
+
+      <input
+        type="text"
+        id="inputText5"
+        placeholder="Enter factors : multiples"
+      />
+
+      <button onclick="runCalculation5()">Calculate Ex5</button>
+
+      <div id="output5"></div>
+    </div>
+
+    <hr />
+
+    <h1>Exercise 6 - GitHub Repo Finder</h1>
+
+    <div class="box">
+      <input
+        id="githubUser"
+        value="gauravsaini9782"
+        placeholder="Enter GitHub username"
+      />
+
+      <button onclick="runGitHub()">Find Most Forked Repo</button>
+
+      <pre id="githubOutput"></pre>
+    </div>
+
+    <script>
+      function runGitHub() {
+        let username = document.getElementById("githubUser").value;
+
+        getMostForkedRepo(username).then((result) => {
+          if (typeof result === "string") {
+            document.getElementById("githubOutput").innerText = result;
+            return;
+          }
+
+          if (result.error) {
+            document.getElementById("githubOutput").innerText = result.error;
+          } else {
+            document.getElementById("githubOutput").innerText =
+              `Repo: ${result.repo}
+Forks: ${result.forks}
+Stars: ${result.stars}
+URL: ${result.url}`;
+          }
+        });
+      }
+    </script>
+
+    <hr />
 
     <h1>User Card Component</h1>
 
-    <!-- USER CARDS -->
-
-    <user-card 
-        name="Gaurav Saini"
-        avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB65ji3btAvoNXOG9IhJW44O3HndVPGOwXfX94H611S16YumoWnGaEbY_DBsV_9KJpgVAzpqpon3Qm-8x7HBtKLc9PcyYzFUTBJVbVLg&s=10">
-
-        <div slot="email">officialgauravsaini026@gmail.com</div>
-        <div slot="phone">098-876-234</div>
-
+    <user-card
+      name="Gaurav Saini"
+      avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB65ji3btAvoNXOG9IhJW44O3HndVPGOwXfX94H611S16YumoWnGaEbY_DBsV_9KJpgVAzpqpon3Qm-8x7HBtKLc9PcyYzFUTBJVbVLg&s=10"
+    >
+      <div slot="email">officialgauravsaini026@gmail.com</div>
+      <div slot="phone">098-876-234</div>
     </user-card>
 
-    <br>
+    <br />
 
-    <user-card 
-        name="Sidhu Paaji"
-        avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdMcCVLMm-5xDfszJvvjxZzAMeC15QX7vqReblPASZx-HwTtKHfBfoCSs_pGDVY7PUZcLGSA1uw6z2i_B9Pgfd0sqcxQUOwYCRsRir5CA&s=10">
-
-        <div slot="email">sidhumoosewala123@gmail.com</div>
-        <div slot="phone">098-845-534</div>
-
+    <user-card
+      name="Sidhu Paaji"
+      avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdMcCVLMm-5xDfszJvvjxZzAMeC15QX7vqReblPASZx-HwTtKHfBfoCSs_pGDVY7PUZcLGSA1uw6z2i_B9Pgfd0sqcxQUOwYCRsRir5CA&s=10"
+    >
+      <div slot="email">sidhumoosewala123@gmail.com</div>
+      <div slot="phone">098-845-534</div>
     </user-card>
-
-    <!-- USER CARD SCRIPT -->
 
     <script>
+      // ===== EX5 BUTTON =====
+      function runEx5() {
+        let input = document.getElementById("ex5Input").value;
 
-        const template = document.createElement('template');
+        let result = ex5(input);
 
-        template.innerHTML = `
-        <style>
+        document.getElementById("output5").innerText = result;
+      }
 
-            .user-card {
-                font-family: Arial, sans-serif;
-                background: #f4f4f4;
-                width: 500px;
-                display: grid;
-                grid-template-columns: 1fr 2fr;
-                gap: 10px;
-                margin-bottom: 15px;
-                border-bottom: darkorchid 5px solid;
-                padding: 10px;
-            }
+      // ===== EX6 BUTTON =====
+      function runEx6() {
+        let input = document.getElementById("ex6Input").value;
 
-            .user-card img {
-                width: 100%;
-            }
+        let result = ex6(input);
 
-            .user-card button {
-                cursor: pointer;
-                background: darkorchid;
-                color: white;
-                border: 0;
-                border-radius: 5px;
-                padding: 5px 10px;
-            }
+        document.getElementById("output6").innerText = result;
+      }
 
-        </style>
+      // ===== USER CARD =====
+      const template = document.createElement("template");
 
-        <div class="user-card">
-
-            <img />
-
-            <div>
-
-                <h3></h3>
-
-                <div class="info">
-                    <p><slot name="email"></slot></p>
-                    <p><slot name="phone"></slot></p>
-                </div>
-
-                <button id="toggle-info">
-                    Hide Info
-                </button>
-
-            </div>
-
-        </div>
-        `;
-
-        class UserCard extends HTMLElement {
-
-            constructor() {
-
-                super();
-
-                this.showInfo = true;
-
-                this.attachShadow({ mode: 'open' });
-
-                this.shadowRoot.appendChild(
-                    template.content.cloneNode(true)
-                );
-
-                this.shadowRoot.querySelector('h3').innerText =
-                    this.getAttribute('name');
-
-                this.shadowRoot.querySelector('img').src =
-                    this.getAttribute('avatar');
-            }
-
-            toggleInfo() {
-
-                this.showInfo = !this.showInfo;
-
-                const info =
-                    this.shadowRoot.querySelector('.info');
-
-                const toggleBtn =
-                    this.shadowRoot.querySelector('#toggle-info');
-
-                if (this.showInfo) {
-
-                    info.style.display = 'block';
-                    toggleBtn.innerText = 'Hide Info';
-
-                } else {
-
-                    info.style.display = 'none';
-                    toggleBtn.innerText = 'Show Info';
-                }
-            }
-
-            connectedCallback() {
-
-                this.shadowRoot
-                    .querySelector('#toggle-info')
-                    .addEventListener(
-                        'click',
-                        () => this.toggleInfo()
-                    );
-            }
+      template.innerHTML = `
+    <style>
+        .user-card {
+            font-family: Arial;
+            background: #f4f4f4;
+            width: 500px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 5px solid darkorchid;
+            margin-bottom: 15px;
         }
 
-        window.customElements.define('user-card', UserCard);
+        .user-card img {
+            width: 100%;
+        }
 
+        .user-card button {
+            background: darkorchid;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
+
+    <div class="user-card">
+        <img />
+        <div>
+            <h3></h3>
+
+            <div class="info">
+                <p><slot name="email"></slot></p>
+                <p><slot name="phone"></slot></p>
+            </div>
+
+            <button id="toggle-info">Toggle</button>
+        </div>
+    </div>
+    `;
+
+      class UserCard extends HTMLElement {
+        constructor() {
+          super();
+
+          this.show = true;
+
+          this.attachShadow({ mode: "open" });
+
+          this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+          this.shadowRoot.querySelector("h3").innerText =
+            this.getAttribute("name");
+
+          this.shadowRoot.querySelector("img").src =
+            this.getAttribute("avatar");
+        }
+
+        toggleInfo() {
+          this.show = !this.show;
+
+          let info = this.shadowRoot.querySelector(".info");
+
+          info.style.display = this.show ? "block" : "none";
+        }
+
+        connectedCallback() {
+          this.shadowRoot
+            .querySelector("#toggle-info")
+            .addEventListener("click", () => this.toggleInfo());
+        }
+      }
+
+      window.customElements.define("user-card", UserCard);
     </script>
-
-</body>
+  </body>
 </html>
